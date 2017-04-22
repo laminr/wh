@@ -11,12 +11,26 @@ public class AppTest
 {
 
     @Test
-    // The ability to add a child node
+    // Set/Get label w/ or w/out the constructor
+    public void getLabel() {
+        final String LABEL  = "set Node Label";
+
+        Node node = new Node();
+        Assert.assertNull(node.getLabel());
+
+        node.setLabel(LABEL);
+        Assert.assertEquals(LABEL, node.getLabel());
+
+        Node nodeWithLabel = new Node(LABEL);
+        Assert.assertEquals(LABEL, nodeWithLabel.getLabel());
+    }
+
+    @Test
+    // 3. The ability to add a child node
     public void addChildToNode() {
 
         Node parent = new Node();
         Node child = new Node();
-        child.setLabel("addChildToNode Child");
 
         Assert.assertEquals(0, parent.getChildren().size());
 
@@ -27,12 +41,10 @@ public class AppTest
     }
 
     @Test
-    // The ability to add a parent node
+    // 4. The ability to add a parent node
     public void addParentToNode() {
 
-        Node parent = new Node();
-        parent.setLabel("addParentToNode Parent");
-
+        Node parent = new Node("addParentToNode Parent");
         Node child = new Node();
 
         Assert.assertEquals(0, parent.getParents().size());
@@ -43,16 +55,11 @@ public class AppTest
     }
 
     @Test
-    // For any given node, return the nodes children
+    // 5. For any given node, return the nodes children
     public void getChildNode() {
-        Node football = new Node();
-        football.setLabel("football");
-
-        Node competition = new Node();
-        competition.setLabel("competition");
-
-        Node player = new Node();
-        player.setLabel("player");
+        Node football = new Node("football");
+        Node competition = new Node("competition");
+        Node player = new Node("player");
 
         Assert.assertEquals(0, football.getChildren().size());
 
@@ -63,7 +70,7 @@ public class AppTest
     }
 
     @Test
-    // For any given node, return the list of all descendant nodes
+    // 6. For any given node, return the list of all descendant nodes
     public void getDescendant() {
         Node graph = createDescendants();
 
@@ -71,6 +78,7 @@ public class AppTest
     }
 
     @Test
+    // 7. For any given node, return the list of all parent nodes
     public void getParents() {
         Node graph = createAscending();
 
@@ -78,29 +86,19 @@ public class AppTest
     }
 
 
+    /***
+     *  Creates descending from Football
+     * @return
+     */
     private Node createDescendants() {
 
-        Node football = new Node();
-        football.setLabel("football");
-
-        Node competition = new Node();
-        competition.setLabel("competition");
-
-        Node player = new Node();
-        player.setLabel("player");
-
-        Node premier = new Node();
-        premier.setLabel("premier");
-
-        Node champions = new Node();
-        champions.setLabel("champions");
-
-        Node manCity = new Node();
-        manCity.setLabel("manCity");
-
-        Node manUtd = new Node();
-        manUtd.setLabel("manUtd");
-
+        Node football = new Node("football");
+        Node competition = new Node("competition");
+        Node player = new Node("player");
+        Node premier = new Node("premier");
+        Node champions = new Node("champions");
+        Node manCity = new Node("manCity");
+        Node manUtd = new Node("manUtd");
 
         football.addChild(competition);
         football.addChild(player);
@@ -116,22 +114,17 @@ public class AppTest
         return football;
     }
 
+    /***
+     * Creates Ascending from Man Utd and Up to Football
+     * @return
+     */
     private Node createAscending() {
 
-        Node football = new Node();
-        football.setLabel("football");
-
-        Node competition = new Node();
-        competition.setLabel("competition");
-
-        Node premier = new Node();
-        premier.setLabel("premier");
-
-        Node champions = new Node();
-        champions.setLabel("champions");
-
-        Node manUtd = new Node();
-        manUtd.setLabel("manUtd");
+        Node football = new Node("football");
+        Node competition = new Node("competition");
+        Node premier = new Node("premier");
+        Node champions = new Node("champions");
+        Node manUtd = new Node("manUtd");
 
         competition.addParent(football);
 

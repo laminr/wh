@@ -2,6 +2,7 @@ package biz.eventually.williamhill.bean;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -15,12 +16,17 @@ import java.util.function.Supplier;
  */
 @Getter
 @Setter
+@NoArgsConstructor
 public class Node {
 
     private String label;
 
     private List<Node> children = new ArrayList<>();
     private List<Node> parents = new ArrayList<>();
+
+    public Node(String label) {
+        this.label = label;
+    }
 
     private void addNode(List<Node> nodes, final Node node) {
         if (node != null) {
